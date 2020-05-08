@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "PhotoApp" %></title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
@@ -56,8 +61,9 @@
                                                                 edit_user_registration_path, title: 'Edit Profile' %>
               </li>
               <li class="col-md-1"> </li>
-              <li class="col-md-3 logout"><%= link_to('Logout', destroy_user_session_path,
-                                                    class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %></li>
+              <li class="col-md-3 logout"><%= link_to 'Logout', destroy_user_session_path,
+                   class: 'btn btn-xs btn-danger logout-button', method: :delete %>
+              </li>
             <% else %>
             <li class="col-md-4 pull-right">
               <%= link_to('Sign In', new_user_session_path, class: 'btn btn-primary', title: 'Sign In') %>
